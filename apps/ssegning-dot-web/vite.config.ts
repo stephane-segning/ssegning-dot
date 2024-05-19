@@ -10,6 +10,15 @@ export default defineConfig({
   server: {
     port: 4200,
     host: 'localhost',
+    proxy: {
+      '/api/socket.io': {
+        target: 'http://localhost:3000', // Update with your NestJS server address
+        ws: true,
+      },
+      '/games': {
+        target: 'http://localhost:3000', // Update with your NestJS server address
+      },
+    },
   },
 
   preview: {

@@ -1,16 +1,10 @@
-import styled from 'styled-components';
-
-import NxWelcome from './nx-welcome';
-
-const StyledApp = styled.div`
-  // Your style here
-`;
+import { DotLobbyClient } from './dot-lobby-client';
 
 export function App() {
   return (
-    <StyledApp>
-      <NxWelcome title="ssegning-dot-web" />
-    </StyledApp>
+    <div className="bg-gray-200 flex items-center justify-center h-screen">
+      <DotLobbyClient />
+    </div>
   );
 }
 

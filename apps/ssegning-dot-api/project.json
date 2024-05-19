@@ -1,0 +1,66 @@
+{
+  "name": "ssegning-dot-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ssegning-dot-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/ssegning-dot-api",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "apps/ssegning-dot-api/src/main.ts",
+        "tsConfig": "apps/ssegning-dot-api/tsconfig.app.json",
+        "assets": ["apps/ssegning-dot-api/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "ssegning-dot-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "ssegning-dot-api:build:development"
+        },
+        "production": {
+          "buildTarget": "ssegning-dot-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/ssegning-dot-api/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
